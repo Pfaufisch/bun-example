@@ -1,7 +1,12 @@
 const server = Bun.serve({
     port: 3000,
     fetch(req) {
-        return new Response("Bun!");
+        const requestUrl = new URL(req.url);
+        if (requestUrl.pathname === "/health") {
+            return  new Response("ok");
+        }
+        
+        return new Response("Bunny 👯!");
     },
 });
 
